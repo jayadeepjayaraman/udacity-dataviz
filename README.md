@@ -4,6 +4,7 @@ This data visualization exercise charts the on time performace of the top US air
 ##Summary
 I downloaded the data from [BTS] (http://www.transtats.bts.gov/OT_Delay/OT_DelayCause1.asp), selecting a dataset that included all domestic flights from all carriers to and from major airports from June 2003 through December 2015. On performing an exploratory analysis of the data I found that the data is very detailed and has information for many airlines (20-25), therefore after an initial analysis I decided to plot the on time percentages for the top 5 airlines. 
 
+Along with this I also plotted another line chart where in the trend for the different delay causes were plotted for the same time period.
 
 ##Design
 
