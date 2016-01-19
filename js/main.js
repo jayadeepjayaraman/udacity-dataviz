@@ -69,5 +69,42 @@ d3.csv("data/2009.csv", function(d) {
         .attr('z-index', '0');
   });
 
+	myChart.legends = [];
+
+	//Creating a list of unique values for handedness of players
+	var airline_filterValues = dimple.getUniqueValues(data, "Carrier Name");
+
+	console.log(airline_filterValues);
+
+	//Capturing the "Click" event of all rectangular shapes in the legend
+	first_legend.shapes.select("rect")
+		.on("click", function (e) {
+			var hide = false;
+            		var newFilters = [];
+
+			//Check what value of handedness to hide based on what's clicked
+            		airline_filterValues.forEach(function (f) {
+				if (f === e.aggField.slice(-1)[0]) {
+					hide = true;
+				} else {
+				                newFilters.push(f);
+				       }
+            		});
+			//Set the opacity value based on clicked
+            		if (hide) {
+			              d3.select(this).style("opacity", 0.2);
+			          }
+			 else	{
+			              newFilters.push(e.aggField.slice(-1)[0]);
+			              d3.select(this).style("opacity", 0.8);
+            			}
+
+			//Filter data based on selection
+            		airline_filterValues = newFilters;
+            		myChart.data = dimple.filterData(data, "Carrier Name", airline_filterValues);
+
+			//re-draw charts based on filtered data
+            		myChart.draw(700);
+          	});
 
 });
